@@ -10,6 +10,22 @@ import java.util.Date;
 @Path("message/")
 public class MessageController {
 
+    @SuppressWarnings("unchecked")
+    private String getMessageList() {
+        JSONArray messageList = new JSONArray();
+        for (Message m: Message.messages) {
+            messageList.add(m.toJSON());
+        }
+        return messageList.toString();
+    }
+
+    @GET
+    @Path("list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String listMessages() {
+        return getMessageList();
+    }
+
     @POST
     @Path("new")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -22,13 +38,7 @@ public class MessageController {
 
         Message.messages.add(new Message(messageId, messageText, messageDate, messageAuthor));
 
-        JSONArray messagesList = new JSONArray();
-
-        for (Message m: Message.messages) {
-            messagesList.add(m.toJSON());
-        }
-
-        return messagesList.toString();
+        return getMessageList();
 
 
     }
