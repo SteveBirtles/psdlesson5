@@ -19,7 +19,7 @@
 
     </head>
 
-    <body class="bg-dark" onload="loadMessages()">
+    <body class="bg-dark" onload="pageLoad()">
 
         <div class="container bg-white">
 
@@ -32,7 +32,7 @@
 
             <div class="container p-3">
 
-                <form class="needs-validation" action="/message/new" method="post" target="_self">
+                <form class="needs-validation" id="messageForm">
                     <div class="form-group form-row">
                         <div class="col-8">
                             <label class="w-100">Message<input class="form-control input-lg" name="messageText" required />
