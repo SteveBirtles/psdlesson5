@@ -22,14 +22,14 @@ function loadMessages() {
     });
 }
 
-
 function resetForm() {
-    $('#messageForm').submit(event => {
+    const form = $('#messageForm');
+    form.submit(event => {
         event.preventDefault();
         $.ajax({
             url: '/message/new',
             type: 'POST',
-            data: $(this).serialize(),
+            data: form.serialize(),
             success: loadMessages
         });
     });
